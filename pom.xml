@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>DoGit</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <build>
+    <plugins>
+    <plugin>
+    <groupId>pl.project13.maven</groupId>
+    <artifactId>git-commit-id-plugin</artifactId>
+    <version>4.0.0</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>revision</goal>
+            </goals>
+            <phase>initialize</phase>
+        </execution>
+    </executions>
+    <configuration>
+    <!--日期格式;默认值:dd.MM.yyyy '@' HH:mm:ss z;-->
+    <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+    <!--,构建过程中,是否打印详细信息;默认值:false;-->
+    <verbose>true</verbose>
+    <!-- ".git"文件路径;默认值:${project.basedir}/.git;
+      注意： 如果是多模块(多模块)项目，则需要修改到.git文件夹的目录-->
+    <dotGitDirectory>${git-path}</dotGitDirectory>
+    <!--
+          Default (optional):
+          git
+          Explanation:
+          This property will be used as the "namespace" prefix for all exposed/generated properties.
+          An example the plugin may generate the property `${configured-prefix}.commit.id`.
+          Such behaviour can be used to generate properties for multiple git repositories (see
+          https://github.com/git-commit-id/maven-git-commit-id-plugin/issues/137#issuecomment-418144756
+          for a full example).
+                      -->
+    <prefix>git</prefix>
+    <!--若项目打包类型为pom,是否取消构建;默认值:true;-->
+    <skipPoms>false</skipPoms>
+    <!--是否生成"git.properties"文件;默认值:false;-->
+    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+    <!--指定"git.properties"文件的存放路径(相对于${project.basedir}的一个路径);
+    注意：该地址决定接口代码是否可以读取到git版本信息，请自行修改-->
+    <generateGitPropertiesFilename>./src/main/resources/git.properties</generateGitPropertiesFilename>
+    <!--选择输出的字段-->
+    </configuration>
+    </plugin>
+    </plugins>
+    </build>
+
+</project>
